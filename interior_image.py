@@ -1,38 +1,71 @@
 from functions import downloadUrl
 import os
+import mysql.connector
 ##
 
 def main():
 
+    #db connect
+    mydb = mysql.connector.connect(
+        host="localhost",
+        port="3307",
+        user="root",
+        passwd="root",
+        database="toyota"
+    )
+
     #Varibales
-    color_codes = ['040','4W9','209','1K3','6X1','1K0','1F7','3t3','070']
-    interior_color_code = "FA20"
-    car_id = "368cedb3-a905-49e8-82f8-e09c20eca8a4"
-    model_id = "5a2db31d-b461-471d-bc1b-e296864d310d"
+    color_code = "218" #default color code
+    car_id = "575b2757-c42e-42ad-9236-7b001ad39b13" #toyota car id
+    model_id = "1f7f04e7-857f-4171-ae24-904b76f6dd81" #toyota model id
+    o_model_id = "19" #our model id
+    o_car_name="rav4"
 
-    for color_code in color_codes:
+    #store path
+    path = './result/interior_images'
 
-        path = './result/'+ interior_color_code +'/' + color_code
+    #Make directory
+    try:
+        os.makedirs(path)
+    except OSError:
+        print ("====> DIRECTORY %s FAILED" % path)
+    else:
+        print ("====> CREATED %s DIRECTORY" % path)
 
-        #Start
-        print ("====> START  -- %s" % color_code)
+    #db query
+    get_interior = mydb.cursor()
+    get_interior.execute("SELECT * FROM car_interiors WHERE car_model_id = "+o_model_id)
+    result_interior = get_interior.fetchall()
 
-        #Make directory
-        try:
-            os.makedirs(path)
-        except OSError:
-            print ("====> DIRECTORY %s FAILED" % path)
-        else:
-            print ("====> CREATED %s DIRECTORY" % path)
+    #db records
+    for c_interior in result_interior:
+        get_color_code = c_interior[2].split('(',1)
+        car_interior_id = c_interior[0]
+        #get color code
+        if len(get_color_code) > 1:
+            _get_color_code = get_color_code[1].split(')',1)
+            get_interior_color = _get_color_code[0]; #interior color code
+
+            #Start
+            print ("====> START  -- %s" % get_interior_color)
 
             #Run
-            for x in range(0,36):
+            for x in range(0,3):
                 c = str(x)
-                grab_url='https://images.toyota-europe.com/az/product-token/' + car_id +'/vehicle/' + model_id + '/options/11369/width/2460/height/1094/scale-mode/1/padding/0/background-colour/F0F0F0/image-quality/60/static-day-interior-' + c +'_' + color_code +'_'+ interior_color_code +'.jpg'
-                downloadUrl( grab_url, path+'/exterior-'+ c +'_' + color_code +'_'+ interior_color_code +'.jpg' ) #Download file
+                file_name = o_model_id + '-static-day-interior-'+ c +'_' + color_code +'_'+ get_interior_color +'.jpg';
+                grab_url='https://images.toyota-europe.com/az/product-token/' + car_id +'/vehicle/' + model_id + '/width/2460/height/1094/scale-mode/1/padding/0/background-colour/F0F0F0/image-quality/60/static-day-interior-' + c +'_' + color_code +'_'+ get_interior_color +'.jpg'
+                downloadUrl( grab_url, path+'/'+ file_name ) #Download file
+                print(grab_url)
+                #insert DB
+                car_interiors = mydb.cursor()
+                sql = "INSERT INTO car_interior_images (car_interior_id, image) VALUES (%s, %s)"
+                val = (car_interior_id, "/cars/"+ o_car_name + "/interior_images/"+file_name)
+                car_interiors.execute(sql, val)
+                mydb.commit()
+
                 print ("====> GRAB %s" % x)
 
-            print ("====> DONE  -- %s" % color_code)
+                print ("====> DONE  -- %s" % color_code)
 
 
 if __name__ == '__main__':
