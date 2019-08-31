@@ -5,9 +5,9 @@ import os
 def main():
 
     #Varibales
-    color_code = "040" #first color code
-    car_id = "368cedb3-a905-49e8-82f8-e09c20eca8a4"
-    model_id = "5a2db31d-b461-471d-bc1b-e296864d310d"
+    color_code = "218" #first color code
+    car_id = "db50c897-99e4-4035-85ad-dfc1722b4ce1"
+    model_id = "48e765ee-b959-6590-b707-676c03f5e921"
 
 
 

@@ -5,11 +5,10 @@ import os
 def main():
 
     #Varibales
-    # color_codes = ['6X3','1G3','8W9','8X8','218','3t3']#rav4 default
-    color_codes = ['2RA','2QZ','2QY','2QJ'] #rav 4 style
-    car_id = "575b2757-c42e-42ad-9236-7b001ad39b13"
-    # model_id = "d1e5962a-77a4-4b45-a443-d70d60501b65" #rav4 default
-    model_id = "3451ed15-3aec-4505-a275-b12dce5217b8" #rav 4 style
+    color_codes = ['040','202','218','4V8','3R3','1G3','1F7','070','4X4','221']
+    car_id = "db50c897-99e4-4035-85ad-dfc1722b4ce1" #prado
+    model_id = "09c451a6-40c4-6590-8676-6e3034c722b1" #1
+    # model_id = "48e765ee-b959-6590-b707-676c03f5e921" #2
 
 
     for color_code in color_codes:
@@ -31,7 +30,7 @@ def main():
             for x in range(0,36):
                 c = str(x)
                 grab_url='https://images.toyota-europe.com/az/product-token/' + car_id +'/vehicle/' + model_id + '/width/1300/height/340/scale-mode/1/padding/0,0,140,135/background-colour/F0F0F0/image-quality/75/exterior-' + c +'_' + color_code +'.jpg'
-                downloadUrl( grab_url, path+'/exterior-'+ c +'_' + color_code +'.jpg' ) #Download file
+                downloadUrl( grab_url, path+'/a-exterior-'+ c +'_' + color_code +'.jpg' ) #Download file
                 print ("====> GRAB %s" % x)
 
             print ("====> DONE  -- %s" % color_code)

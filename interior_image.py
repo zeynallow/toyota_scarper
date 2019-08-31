@@ -16,10 +16,10 @@ def main():
 
     #Varibales
     color_code = "218" #default color code
-    car_id = "575b2757-c42e-42ad-9236-7b001ad39b13" #toyota car id
-    model_id = "1f7f04e7-857f-4171-ae24-904b76f6dd81" #toyota model id
-    o_model_id = "19" #our model id
-    o_car_name="rav4"
+    car_id = "db50c897-99e4-4035-85ad-dfc1722b4ce1" #prado
+    model_id = "f16e299d-991f-6590-9860-ab4e2a45d845" #toyota model id, comfort
+    o_model_id = "30" #our model id
+    o_car_name="land-cruiser-prado"
 
     #store path
     path = './result/interior_images'

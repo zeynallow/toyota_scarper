@@ -39,7 +39,7 @@ def main():
     car_id="2"
     car_name="rav4"
     path = './result/'+car_name+'/gallery'
-    api_url = 'https://www.toyota.az/api/data/section/gallery/path/new-cars/rav4/index.json'
+    api_url = 'https://www.toyota.az/api/data/section/gallery/path/new-cars/'+car_name+'/index.json'
 
     #Make directory
     # try:
