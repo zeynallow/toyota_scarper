@@ -6,8 +6,8 @@ def main():
 
     #Varibales
     color_code = "218" #first color code
-    car_id = "db50c897-99e4-4035-85ad-dfc1722b4ce1"
-    model_id = "48e765ee-b959-6590-b707-676c03f5e921"
+    car_id = "071f3137-e5a6-4e3c-824d-57a19f89a7d7" #helix
+    model_id = "456758c3-fe68-446e-8801-c25d76035543" #1
 
 
 

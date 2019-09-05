@@ -5,10 +5,10 @@ import os
 def main():
 
     #Varibales
-    color_codes = ['040','202','218','4V8','3R3','1G3','1F7','070','4X4','221']
-    car_id = "db50c897-99e4-4035-85ad-dfc1722b4ce1" #prado
-    model_id = "09c451a6-40c4-6590-8676-6e3034c722b1" #1
-    # model_id = "48e765ee-b959-6590-b707-676c03f5e921" #2
+    color_codes = ['040','218','3T6','1G3','8X2','4R8','1D6']
+    car_id = "071f3137-e5a6-4e3c-824d-57a19f89a7d7" #helix
+    model_id = "456758c3-fe68-446e-8801-c25d76035543" #1
+    # model_id = "24de2d40-8a3f-4e52-8397-c3da8e6d4fb9" #2
 
 
     for color_code in color_codes:
